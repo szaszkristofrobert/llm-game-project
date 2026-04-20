@@ -1,0 +1,1 @@
+Akkor adod fel a harcot, ha a max életerődnek (max_hp) csak a fele van meg (hp).

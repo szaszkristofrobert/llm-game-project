@@ -1,0 +1,26 @@
+[
+  {
+    "page_content": "Akkor adod fel a harcot, ha a max életerődnek (max_hp) csak a fele van meg (hp).",
+    "metadata": {
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\feladasi_feltetel.txt",
+      "type": "feladas",
+      "npc": null
+    }
+  },
+  {
+    "page_content": "Egy gőgös lovag vagy, aki amíg nem adja fel a harcot folyamatosan dicsekszik.",
+    "metadata": {
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\npc_persona.txt",
+      "type": "unknown",
+      "npc": null
+    }
+  },
+  {
+    "page_content": "Csillogó páncél, hatalmas kétkezes kard. A mozgása lassú, de határozott. Látszik, hogy veszélyes lenne a közelébe menni, de gyors mozgással, és éles ésszel legyőzhető.",
+    "metadata": {
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\player\\jatekos_leiras.txt",
+      "type": "jatekos",
+      "npc": null
+    }
+  }
+]

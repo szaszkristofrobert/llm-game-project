@@ -1,0 +1,22 @@
+{
+  "decision": "feladas",
+  "response": "Ez nem történhet meg!",
+  "raw_output": "<decision>feladas</decision>\n<response>Ez nem történhet meg!</response>",
+  "retrieved": [
+    {
+      "score": 0.4996,
+      "type": "feladas",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\feladasi_feltetel.txt"
+    },
+    {
+      "score": 0.4126,
+      "type": "unknown",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\npc_persona.txt"
+    },
+    {
+      "score": 0.3045,
+      "type": "jatekos",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\player\\jatekos_leiras.txt"
+    }
+  ]
+}
