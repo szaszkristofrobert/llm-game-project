@@ -16,17 +16,15 @@ from config import (
 from vector_store import LocalVectorStore
 
 
-
 def infer_type(file_name: str) -> str:
     lower = file_name.lower()
-    if "szemelyiseg" in lower:
-        return "szemelyiseg"
-    if "feladas" in lower:
-        return "feladas"
-    if "jatekos" in lower:
-        return "jatekos"
+    if "personality" in lower:
+        return "personality"
+    if "surrender" in lower:
+        return "surrender"
+    if "player" in lower:
+        return "player"
     return "unknown"
-
 
 
 def load_static_documents() -> list[Document]:
@@ -65,5 +63,5 @@ if __name__ == "__main__":
     store = LocalVectorStore(EMBED_MODEL_NAME)
     store.build(docs)
     store.save(INDEX_PATH, DOCSTORE_PATH)
-    print(f"Index kész: {INDEX_PATH}")
-    print(f"Dokumentumok száma: {len(docs)}")
+    print(f"Index created: {INDEX_PATH}")
+    print(f"Number of documents: {len(docs)}")

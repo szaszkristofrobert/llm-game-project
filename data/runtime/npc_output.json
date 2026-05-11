@@ -1,22 +1,22 @@
 {
-  "decision": "feladas",
-  "response": "Ez nem történhet meg!",
-  "raw_output": "<decision>feladas</decision>\n<response>Ez nem történhet meg!</response>",
+  "decision": "surrender",
+  "response": "I suppose I have no choice but to yield. Your... superior strength is too much for me.",
+  "raw_output": "<decision>surrender</decision>\n<response>I suppose I have no choice but to yield. Your... superior strength is too much for me.</response>",
   "retrieved": [
     {
-      "score": 0.4996,
-      "type": "feladas",
-      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\feladasi_feltetel.txt"
+      "score": 0.2403,
+      "type": "surrender",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\surrender_conditions_proud_knight.txt"
     },
     {
-      "score": 0.4126,
-      "type": "unknown",
-      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\npc_persona.txt"
+      "score": 0.2059,
+      "type": "player",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\player\\player_description.txt"
     },
     {
-      "score": 0.3045,
-      "type": "jatekos",
-      "source": "B:\\vscode_projects\\llm-game-project\\data\\player\\jatekos_leiras.txt"
+      "score": 0.197,
+      "type": "personality",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\personality_proud_knight.txt"
     }
   ]
 }

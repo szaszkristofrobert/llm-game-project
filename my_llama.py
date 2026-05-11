@@ -8,7 +8,7 @@ def send_message(user_prompt: str):
 
     # Send whole history to Ollama
     response = chat(
-        model="llama3.1",
+        model="llama3.1:70b",
         messages=messages
     )
 

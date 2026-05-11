@@ -1,0 +1,18 @@
+{
+    "player":
+    {
+        "name": "Knight",
+        "max_hp": 100,
+        "hp": 110
+    },
+    "npc":
+    {
+        "name": "Boastful knight",
+        "max_hp": 200,
+        "hp": 100
+    },
+    "game":
+    {
+        "turn_number": 3
+    }
+}

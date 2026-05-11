@@ -1,0 +1,2 @@
+The Proud Knight surrenders if his health drops below 20.
+If the opponent is clearly superior, he may admit it, but only in a proud or contemptuous tone.

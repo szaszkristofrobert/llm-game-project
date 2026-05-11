@@ -1,14 +1,14 @@
 def build_system_prompt() -> str:
     return (
-        "Te egy játékbeli NPC ellenfél vagy. "
-        "Csak a megadott kontextusból dolgozhatsz. "
-        "Ne találj ki új lore-t. Ne légy out of character. "
-        "A választ kötelezően XML-szerű formában add vissza: "
+        "You are an NPC enemy in a game. "
+        "You may only use the provided context. "
+        "Do not invent new lore. Stay in character. "
+        "Your answer must be returned in XML-like format: "
         "<decision>...</decision><response>...</response>"
     )
 
 
-def build_user_prompt(retrieved_docs, game_state, player_message, score_threshold: float) -> str:
+def build_user_prompt(retrieved_docs, game_state, conversation, score_threshold: float) -> str:
     personality_chunks = []
     surrender_chunks = []
     player_chunks = []
@@ -22,46 +22,48 @@ def build_user_prompt(retrieved_docs, game_state, player_message, score_threshol
         dtype = doc.metadata.get("type", "unknown")
         content = doc.page_content.strip()
 
-        if dtype == "szemelyiseg":
+        if dtype == "personality":
             personality_chunks.append(content)
-        elif dtype == "feladas":
+        elif dtype == "surrender":
             surrender_chunks.append(content)
-        elif dtype == "jatekos":
+        elif dtype == "player":
             player_chunks.append(content)
 
     if not personality_chunks and not surrender_chunks and not player_chunks:
-        context_block = "Nincs releváns kontextus. Ha nem biztos a döntés, fallbackként támadj."
+        context_block = "No relevant context found. If you are uncertain, use attack as the fallback decision."
     else:
         context_block = f"""
-SZEMÉLYISÉG:
-{chr(10).join(personality_chunks) if personality_chunks else 'Nincs releváns személyiség kontextus.'}
+PERSONALITY:
+{chr(10).join(personality_chunks) if personality_chunks else 'No relevant personality context found.'}
 
-JÁTÉKOSRÓL TUDOTT INFORMÁCIÓ:
-{chr(10).join(player_chunks) if player_chunks else 'Nincs releváns játékos kontextus.'}
+KNOWN INFORMATION ABOUT THE PLAYER:
+{chr(10).join(player_chunks) if player_chunks else 'No relevant player context found.'}
 
-FELADÁSI FELTÉTELEK:
-{chr(10).join(surrender_chunks) if surrender_chunks else 'Nincs releváns feladási kontextus.'}
+SURRENDER CONDITIONS:
+{chr(10).join(surrender_chunks) if surrender_chunks else 'No relevant surrender context found.'}
 """.strip()
 
     return f"""
 {context_block}
 
-JÁTÉKÁLLÁS:
-Játékos HP: {game_state.get('jatekos_hp')}
-Ellenfél HP: {game_state.get('ellenfel_hp')}
-Kör: {game_state.get('korszam')}
+GAME STATE:
+Player HP: {game_state["player"]["hp"]}
+Player maximum HP: {game_state["player"]["max_hp"]}
+NPC HP: {game_state["npc"]["hp"]}
+NPC maximum HP: {game_state["npc"]["max_hp"]}
+Turn: {game_state["game"]["turn_number"]}
 
-JÁTÉKOS UTOLSÓ ÜZENETE:
-{player_message}
+THE CONVERSATION BETWENN THE PLAYER AND THE NPC YOU ARE PLAYING SO FAR:
+{conversation}
 
-Feladat:
-1. Értelmezd a játékos üzenetét.
-2. Értékeld a játékállást.
-3. Ellenőrizd a feladási feltételeket.
-4. Dönts: tamadas vagy feladas.
-5. Adj rövid, karakterhű választ.
+Task:
+1. Interpret the player's message.
+2. Evaluate the current game state.
+3. Check the surrender conditions.
+4. Decide: attack or surrender. By default you should attack. Only choose surrender, if the surrender condition is met.
+5. Give a short, in-character reply.
 
-Csak ezt a formátumot használd:
-<decision>tamadas_vagy_feladas</decision>
-<response>az npc végleges mondata</response>
+Use only this format:
+<decision>attack_or_surrender</decision>
+<response>the npc's final spoken response</response>
 """.strip()

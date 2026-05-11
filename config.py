@@ -14,7 +14,7 @@ CHUNK_SIZE = 800
 CHUNK_OVERLAP = 100
 
 USE_OLLAMA = True
-OLLAMA_MODEL = "llama3.1"
+OLLAMA_MODEL = "llama3.1:70b"
 
 INDEX_PATH = MODEL_DIR / "faiss.index"
 DOCSTORE_PATH = MODEL_DIR / "documents.json"

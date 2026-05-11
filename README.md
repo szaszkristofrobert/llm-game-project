@@ -1,54 +1,54 @@
-# NPC RAG projektváz
+# NPC RAG project scaffold
 
-Ez a projekt a rendszerterved alapján készült: statikus `.txt` lore fájlok, dinamikus `jatekallas.json` és `jatekos_valasz.txt`, `all-MiniLM-L6-v2` embedding, FAISS retrieval, majd lokális Llama 3.1 meghívás XML-szerű döntéssel.
+This project was prepared based on your system design: static `.txt` lore files, dynamic `game_state.json` and `player_message.txt`, `all-MiniLM-L6-v2` embeddings, FAISS retrieval, and a local Llama 3.1 call that returns an XML-like decision and response.
 
-## Telepítés
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Fájlok
+## Files
 
-- `config.py` – központi beállítások
-- `build_index.py` – `.txt` fájlok betöltése, chunkolás, FAISS index építés
-- `vector_store.py` – embedding + keresés + mentés/betöltés
-- `prompts.py` – system és user prompt generálás
-- `llm_client.py` – lokális Llama 3.1 hívása Ollamán keresztül
-- `parser_utils.py` – `<decision>` és `<response>` parse
-- `rag_pipeline.py` – teljes körfuttatás, `npc_output.json` mentéssel
-- `example_run.py` – egyszerű tesztindítás
+- `config.py` – central settings and paths
+- `build_index.py` – loads `.txt` files, chunks them, and builds the FAISS index
+- `vector_store.py` – embeddings, search, save, and load
+- `prompts.py` – system and user prompt generation
+- `llm_client.py` – local Llama 3.1 call through Ollama
+- `parser_utils.py` – parses `<decision>` and `<response>`
+- `rag_pipeline.py` – full NPC turn execution and `npc_output.json` output
+- `example_run.py` – simple test runner
 
-## Első futtatás
+## First run
 
-1. Indítsd el az Ollamát úgy, hogy a `llama3.1` modell elérhető legyen.
-2. Építs indexet:
+1. Start Ollama and make sure the `llama3.1:70b` model is available.
+2. Build the index:
 
 ```bash
 python build_index.py
 ```
 
-3. Futtasd az NPC kört:
+3. Run one NPC turn:
 
 ```bash
 python rag_pipeline.py
 ```
 
-4. Az eredmény itt lesz:
+4. The result will be saved here:
 
 ```text
 data/runtime/npc_output.json
 ```
 
-## Godot integráció ötlet
+## Godot integration idea
 
-A rendszerterv szerint a Godot kör végén kiírja a `jatekallas.json`-t és `jatekos_valasz.txt`-t, majd meghívja a Python pipeline-t, végül visszaolvassa a `npc_output.json`-t.
+According to the system design, Godot should write `game_state.json` and `player_message.txt` at the end of the player's turn, then call the Python pipeline, and finally read back `npc_output.json`. This matches the file-based bridge described in the architecture section of the plan.
 
-## Megjegyzés
+## Note
 
-A rendszertervben szereplő `<thinking>` blokk helyett itt direkt csak a stabilan parse-olható mezők maradtak:
+The original design also mentioned a `<thinking>` block, but this scaffold intentionally keeps only the stable fields that are easy to parse:
 
 ```xml
-<decision>feladas</decision>
-<response>Elég... most nem folytatom tovább.</response>
+<decision>surrender</decision>
+<response>Enough. I will not continue this fight.</response>
 ```
