@@ -4,43 +4,45 @@ def build_system_prompt() -> str:
         "You may only use the provided context. "
         "Do not invent new lore. Stay in character. "
         "Your answer must be returned in XML-like format: "
-        "<decision>...</decision><response>...</response>"
+        "<response>...</response>"
     )
 
 
 def build_user_prompt(retrieved_docs, game_state, conversation, score_threshold: float) -> str:
-    personality_chunks = []
-    surrender_chunks = []
+    npc_chunks = []
     player_chunks = []
 
     for item in retrieved_docs:
         score = item["score"]
+        print(score)
         doc = item["document"]
+        print(doc.page_content.strip())
         if score < score_threshold:
             continue
 
+        
+
         dtype = doc.metadata.get("type", "unknown")
+        print(dtype)
         content = doc.page_content.strip()
 
-        if dtype == "personality":
-            personality_chunks.append(content)
-        elif dtype == "surrender":
-            surrender_chunks.append(content)
+        if dtype == "npc" or dtype == "unknown":
+            npc_chunks.append(content)
         elif dtype == "player":
             player_chunks.append(content)
 
-    if not personality_chunks and not surrender_chunks and not player_chunks:
-        context_block = "No relevant context found. If you are uncertain, use attack as the fallback decision."
+    print(npc_chunks)
+    print("+++++++++++++++++++++")
+
+    if not npc_chunks and not player_chunks:
+        context_block = "No relevant context found."
     else:
         context_block = f"""
-PERSONALITY:
-{chr(10).join(personality_chunks) if personality_chunks else 'No relevant personality context found.'}
+INFORMATION ABOUT YOUR CHARACTER:
+{chr(10).join(npc_chunks) if npc_chunks else 'No relevant personality context found.'}
 
 KNOWN INFORMATION ABOUT THE PLAYER:
 {chr(10).join(player_chunks) if player_chunks else 'No relevant player context found.'}
-
-SURRENDER CONDITIONS:
-{chr(10).join(surrender_chunks) if surrender_chunks else 'No relevant surrender context found.'}
 """.strip()
 
     return f"""
@@ -58,12 +60,10 @@ THE CONVERSATION BETWENN THE PLAYER AND THE NPC YOU ARE PLAYING SO FAR:
 
 Task:
 1. Interpret the player's message.
-2. Evaluate the current game state.
-3. Check the surrender conditions.
-4. Decide: attack or surrender. By default you should attack. Only choose surrender, if the surrender condition is met.
-5. Give a short, in-character reply.
+2. Check the gamestate. If the decision is FIGHT you should fight on, if it is SURRENDER you should give up.
+3. Your decision is based on the gamestate, not the player response. If you fight you should taunt the player, if you surrender you should give up.
+4. Give a short, in-character reply.
 
 Use only this format:
-<decision>attack_or_surrender</decision>
 <response>the npc's final spoken response</response>
 """.strip()

@@ -18,10 +18,8 @@ from vector_store import LocalVectorStore
 
 def infer_type(file_name: str) -> str:
     lower = file_name.lower()
-    if "personality" in lower:
-        return "personality"
-    if "surrender" in lower:
-        return "surrender"
+    if "npc" in lower:
+        return "npc"
     if "player" in lower:
         return "player"
     return "unknown"

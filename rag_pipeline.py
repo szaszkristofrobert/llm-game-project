@@ -34,8 +34,6 @@ class NPCPipeline:
 
         query = f"""
 Player message: {player_message}
-Player HP: {game_state["player"]["hp"]}
-Player maximum HP: {game_state["player"]["max_hp"]}
 NPC HP: {game_state["npc"]["hp"]}
 NPC maximum HP: {game_state["npc"]["max_hp"]}
 Turn: {game_state["game"]["turn_number"]}
@@ -53,11 +51,10 @@ Turn: {game_state["game"]["turn_number"]}
         print("-------------------------------------------------------------------------")
 
         raw_output = call_llm(system_prompt, user_prompt)
-        decision, response = parse_response(raw_output)
+        response = parse_response(raw_output)
         self.conversation = self.conversation + f"""npc: {response}\n"""
 
         result = {
-            "decision": decision,
             "response": response,
             "raw_output": raw_output,
             "retrieved": [

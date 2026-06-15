@@ -1,24 +1,48 @@
 [
   {
-    "page_content": "The Proud Knight is arrogant, looks down on the weak, and sees begging as an insult.\nHe likes to emphasize his superiority, but if defeat is undeniable, he may withdraw while framing it as a matter of honor.",
+    "page_content": "This is a recipe for noodles...",
     "metadata": {
-      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\personality_proud_knight.txt",
-      "type": "personality",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\cookbook.txt",
+      "type": "unknown",
       "npc": null
     }
   },
   {
-    "page_content": "The Proud Knight surrenders if his health drops below 20.\nIf the opponent is clearly superior, he may admit it, but only in a proud or contemptuous tone.",
+    "page_content": "Dark elves are vile creatures living in the cities.",
     "metadata": {
-      "source": "B:\\vscode_projects\\llm-game-project\\data\\npc\\surrender_conditions_proud_knight.txt",
-      "type": "surrender",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\dark_elf.txt",
+      "type": "unknown",
+      "npc": null
+    }
+  },
+  {
+    "page_content": "The dark forest is a region with purple trees. Warriors from here are mostly elves.",
+    "metadata": {
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\dark_forest.txt",
+      "type": "unknown",
+      "npc": null
+    }
+  },
+  {
+    "page_content": "Elves are tall, slender creatures, with innate magic. An elf will always remain proud.",
+    "metadata": {
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\elf.txt",
+      "type": "unknown",
+      "npc": null
+    }
+  },
+  {
+    "page_content": "The Proud Knight is arrogant, looks down on the weak, and sees begging as an insult.\nHe likes to emphasize his superiority, but if defeat is undeniable, he may withdraw while framing it as a matter of honor.",
+    "metadata": {
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\personality_proud_knight.txt",
+      "type": "unknown",
       "npc": null
     }
   },
   {
     "page_content": "The player is a young adventurer whose appearance is tidy, but whose armor bears marks from previous battles.\nAt first glance, they seem determined and dangerous.",
     "metadata": {
-      "source": "B:\\vscode_projects\\llm-game-project\\data\\player\\player_description.txt",
+      "source": "B:\\vscode_projects\\llm-game-project\\data\\player_description.txt",
       "type": "player",
       "npc": null
     }

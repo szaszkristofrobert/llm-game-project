@@ -15,13 +15,13 @@ pip install -r requirements.txt
 - `vector_store.py` – embeddings, search, save, and load
 - `prompts.py` – system and user prompt generation
 - `llm_client.py` – local Llama 3.1 call through Ollama
-- `parser_utils.py` – parses `<decision>` and `<response>`
+- `parser_utils.py` – parses `<response>`
 - `rag_pipeline.py` – full NPC turn execution and `npc_output.json` output
 - `example_run.py` – simple test runner
 
 ## First run
 
-1. Start Ollama and make sure the `llama3.1:70b` model is available.
+1. Start Ollama and make sure the `llama3.1:8b` model is available.
 2. Build the index:
 
 ```bash
@@ -37,7 +37,7 @@ python rag_pipeline.py
 4. The result will be saved here:
 
 ```text
-data/runtime/npc_output.json
+data/godot/runtime/npc_output.json
 ```
 
 ## Godot integration idea
@@ -49,6 +49,5 @@ According to the system design, Godot should write `game_state.json` and `player
 The original design also mentioned a `<thinking>` block, but this scaffold intentionally keeps only the stable fields that are easy to parse:
 
 ```xml
-<decision>surrender</decision>
 <response>Enough. I will not continue this fight.</response>
 ```

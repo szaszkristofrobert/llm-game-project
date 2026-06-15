@@ -1,5 +1,18 @@
-[gd_scene format=3 uid="uid://d001fe04fdtpm"]
+[gd_scene load_steps=4 format=3 uid="uid://d001fe04fdtpm"]
+
+[ext_resource type="Texture2D" uid="uid://c5s2v2eme42oj" path="res://sprites/player_sword.png" id="1_flubm"]
+[ext_resource type="Script" path="res://player.gd" id="1_h5d2y"]
+[ext_resource type="Texture2D" uid="uid://bnjqolk0rhqlg" path="res://sprites/player_head.png" id="2_p5nkj"]
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_h5d2y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Player_Model" type="Sprite2D" parent="."]
+position = Vector2(273.75, 219.375)
+scale = Vector2(1.70801, 1.70801)
+texture = ExtResource("2_p5nkj")
+
+[node name="Sword" type="Sprite2D" parent="."]
+position = Vector2(550, 283)
+scale = Vector2(1.17773, 1.17773)
+texture = ExtResource("1_flubm")

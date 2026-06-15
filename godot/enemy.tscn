@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce3s40dak2h2t"]
+
+[ext_resource type="Texture2D" uid="uid://kcfs20k62fqf" path="res://sprites/proud_knight.png" id="1_t4eka"]
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Model" type="Sprite2D" parent="."]
+position = Vector2(224.5, 230.169)
+scale = Vector2(0.681539, 0.681539)
+texture = ExtResource("1_t4eka")
